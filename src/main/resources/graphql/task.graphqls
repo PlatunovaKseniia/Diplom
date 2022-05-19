@@ -1,0 +1,37 @@
+type HandOutOutput {
+    name: String!
+    startTime: String!
+    endTime: String!
+    customers: [CustomerOutput]
+    learningObjects: [LearningObject]
+}
+
+type HandOut {
+    name: String!
+    startTime: String!
+    endTime: String!
+}
+
+type LearningObject {
+    id: String!
+    name: String!
+    kind: String!
+    path: String!
+    taskFile: String
+}
+
+input HandOutInput {
+    id: String
+    name: String!
+    startTime: String!
+    endTime: String!
+    email: [String]!
+    nameLearningObject: [String]!
+}
+
+input LearningObjectInput {
+    id: String
+    name: String!
+    kind: String!
+    uploadFile: String!
+}

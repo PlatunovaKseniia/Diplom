@@ -1,0 +1,58 @@
+type Customer {
+    email: String
+    id: ID!
+    password: String
+}
+
+type CustomerOutput {
+    email: String!
+    role: String
+    customerInfo: CustomerInfo
+}
+
+type CustomerInfo {
+    firstName: String!
+    lastName: String!
+    schoolNumber: String
+    studyGroup: String
+}
+
+type CustomerBy {
+    id: String!
+    email: String!
+    firstName: String!
+    lastName: String!
+    info: String!
+}
+
+input PersonInput {
+    id: String
+    email: String!
+    firstName: String!
+    lastName: String!
+}
+
+input CustomerInput {
+    id: String
+    email: String!
+    password: String!
+}
+
+input StudentInfoInput {
+    personInput: PersonInput!
+    studyGroup: String!
+}
+
+input TeacherInfoInput {
+    personInput: PersonInput!
+}
+
+input SchoolchildInfoInput {
+    personInput: PersonInput!
+    schoolNumber: String!
+}
+
+
+
+
+

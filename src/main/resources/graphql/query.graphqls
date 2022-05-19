@@ -1,0 +1,12 @@
+type Query {
+    getAllCustomers: [CustomerOutput]
+    getCustomersByRole(role: String!): [CustomerBy]
+    getCustomersBySchoolNumber(schoolNumber: String!): [CustomerBy]
+    getCustomersByStudyGroup(studyGroup: String!): [CustomerBy]
+
+    getAllLearningObject: [LearningObject]
+    getAllHandOut: [HandOutOutput]
+    getLearningObjectByName(name: String!): LearningObject
+    getHandOutByName(name: String!): HandOutOutput
+    getHandOutByDate: [HandOutOutput]
+}

@@ -1,0 +1,19 @@
+type Mutation {
+    signUpCustomer(customerInput: CustomerInput!): Customer
+    updateCustomer(customerInput: CustomerInput!): Customer
+    deleteCustomer(customerInput: String!): Customer
+
+    addAdditionalInfoForStudent(studentInfoInput: StudentInfoInput!): CustomerOutput
+    addAdditionalInfoForTeacher(teacherInfoInput: TeacherInfoInput!): CustomerOutput
+    addAdditionalInfoForSchoolchild(schoolchildInfoInput: SchoolchildInfoInput!): CustomerOutput
+    updateAdditionalInfoForStudent(studentInfoInput: StudentInfoInput!): CustomerOutput
+    updateAdditionalInfoForTeacher(teacherInfoInput: TeacherInfoInput!): CustomerOutput
+    updateAdditionalInfoForSchoolchild(schoolchildInfoInput: SchoolchildInfoInput!): CustomerOutput
+
+    addHandOut(handOutInput: HandOutInput!): HandOut
+    addLearningObject(learningObjectInput: LearningObjectInput!): LearningObject
+    updateLearningObject(learningObjectInput: LearningObjectInput!): LearningObject
+    updateHandOut(handOutInput: HandOutInput!): HandOut
+    deleteHandOut(handOutId: String!): HandOut
+    deleteLearningObject(learningObjectInput: String!): LearningObject
+}
