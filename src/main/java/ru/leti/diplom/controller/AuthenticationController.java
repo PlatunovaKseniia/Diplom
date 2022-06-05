@@ -9,6 +9,8 @@ import ru.leti.diplom.domain.customer.Customer;
 import ru.leti.diplom.domain.inputdto.customer.CustomerInput;
 import ru.leti.diplom.service.CustomerService;
 
+import java.util.UUID;
+
 @Controller
 @RequiredArgsConstructor
 public class AuthenticationController {
@@ -27,7 +29,7 @@ public class AuthenticationController {
 
     @MutationMapping
     @PreAuthorize("hasRole('USER')")
-    public void deleteCustomer(@Argument CustomerInput customerInput) {
-        customerService.deleteCustomer(customerInput);
+    public void deleteCustomer(@Argument UUID customerInputID) {
+        customerService.deleteCustomer(customerInputID);
     }
 }

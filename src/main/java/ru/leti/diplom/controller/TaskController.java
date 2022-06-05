@@ -85,7 +85,7 @@ public class TaskController {
 
     @MutationMapping
     @PreAuthorize("hasRole('USER')")
-    public void deleteLearningObject(@Argument LearningObjectInput learningObjectInput) {
-        taskService.deleteLearningObject(learningObjectInput);
+    public void deleteLearningObject(@Argument String learningObjectId) {
+        taskService.deleteLearningObject(UUID.fromString(learningObjectId));
     }
 }

@@ -177,13 +177,24 @@ public class TaskService {
     public List<HandOutOutput> getHandOutByDate() {
         LocalDateTime start = LocalDateTime.now();
         List<HandOut> handOuts = handOutRepository.findAll();
-        handOuts.stream().filter(handOut -> handOut.getStartTime().compareTo(start) != -1)
-                .filter(handOut -> handOut.getEndTime().compareTo(start) != 1);
+
+        List<HandOut> hOs = handOuts
+                .stream()
+                .filter(handOut -> handOut
+                        .getStartTime()
+                        .compareTo(start) < 0)
+                .filter(handOut -> handOut
+                        .getEndTime()
+                        .compareTo(start) > 0).toList();
+
+        if(hOs.isEmpty())
+            throw new BusinessException("Hand-out not found");
+
         List<CustomerHandOut> customerHandOuts = new ArrayList<>();
-        handOuts.stream().forEach(handOut -> customerHandOuts.addAll(customerHandOutRepository.findCustomerHandOutByHandOut(handOut).get()));
+        handOuts.forEach(handOut -> customerHandOuts.addAll(customerHandOutRepository.findCustomerHandOutByHandOut(handOut).get()));
 
         List<Task> tasks = new ArrayList<>();
-        handOuts.stream().forEach(handOut -> tasks.addAll(taskRepository.findTaskByHandOut(handOut).get()));
+        handOuts.forEach(handOut -> tasks.addAll(taskRepository.findTaskByHandOut(handOut).get()));
         return handOuts.stream().map(handOut -> new HandOutOutput(
                 handOut.getId(),
                 handOut.getName(),
@@ -249,10 +260,10 @@ public class TaskService {
         }
     }
 
-    public void deleteLearningObject(LearningObjectInput learningObjectInput) {
-        if(learningObjectRepository.findLearningObjectById(learningObjectInput.id()).isPresent()) {
+    public void deleteLearningObject(UUID learningObjectInput) {
+        if(learningObjectRepository.findLearningObjectById(learningObjectInput).isPresent()) {
             LearningObject learningObject = learningObjectRepository
-                    .findLearningObjectById(learningObjectInput.id()).get();
+                    .findLearningObjectById(learningObjectInput).get();
             try {
                 Files.deleteIfExists(Paths.get("%s%s.%s".formatted(defaultFilePath, learningObject.getName(), learningObject.getKind())));
             } catch (IOException e) {

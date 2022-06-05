@@ -52,10 +52,10 @@ public class CustomerService {
         }
     }
 
-    public void deleteCustomer(CustomerInput customerInput) {
-        if (customerRepository.findCustomerById(customerInput.id()).isPresent()) {
+    public void deleteCustomer(UUID customerInput) {
+        if (customerRepository.findCustomerById(customerInput).isPresent()) {
             Customer customer = customerRepository
-                    .findCustomerById(customerInput.id()).get();
+                    .findCustomerById(customerInput).get();
             customerRepository.delete(customer);
         } else {
             throw new BusinessException("User not found");

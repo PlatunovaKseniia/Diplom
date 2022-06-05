@@ -1,7 +1,7 @@
 type Mutation {
     signUpCustomer(customerInput: CustomerInput!): Customer
     updateCustomer(customerInput: CustomerInput!): Customer
-    deleteCustomer(customerInput: String!): Customer
+    deleteCustomer(customerInputID: String!): Customer
 
     addAdditionalInfoForStudent(studentInfoInput: StudentInfoInput!): CustomerOutput
     addAdditionalInfoForTeacher(teacherInfoInput: TeacherInfoInput!): CustomerOutput
@@ -15,5 +15,5 @@ type Mutation {
     updateLearningObject(learningObjectInput: LearningObjectInput!): LearningObject
     updateHandOut(handOutInput: HandOutInput!): HandOut
     deleteHandOut(handOutId: String!): HandOut
-    deleteLearningObject(learningObjectInput: String!): LearningObject
+    deleteLearningObject(learningObjectId: String!): LearningObject
 }
